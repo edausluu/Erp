@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Satış Sonrası Destek | OrbisERP</title>
+  <link rel="stylesheet" href="css/panel-style.css" />
+  <style>
+    /* Basit sayfalama ve buton stili */
+    .filter-container {
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .pagination {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    .pagination button {
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+    .form-buttons button {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+      <!-- Sol Menü -->
+    <aside class="sidebar">
+      <img src="img/orbiserp-logo-white.png" alt="OrbisERP Logo" class="sidebar-logo" />
+      <nav class="sidebar-nav">
+       <ul>
+          <li><a href="panel.html">🏠 Ana Sayfa</a></li>
+          <li class="has-submenu">
+            <span>👥 CRM ▸</span>
+            <ul class="submenu">
+              <li><a href="potansiyel.html">👤 Potansiyel Müşteriler</a></li>
+              <li><a href="ilk-temas.html">📞 İlk Temas ve Takip</a></li>
+              <li><a href="teklifler.html">💼 Teklifler</a></li>
+              <li><a href="satis.html">🛍️ Satışa Dönüşüm</a></li>
+              <li><a href="teslimat.html">📦 Teslimat & Faturalama</a></li>
+              <li><a href="destek.html">🔧 Satış Sonrası Destek</a></li>
+              <li><a href="kampanya.html">🎁 Sadakat & Kampanyalar</a></li>
+              <li><a href="analitik.html">📊 Müşteri Analitiği</a></li>
+              <li><a href="gorunum.html">🧭 360° Görünüm</a></li>
+            </ul>
+          </li>
+          <li><a href="#">📦 Envanter</a></li>
+          <li><a href="#">💼 İnsan Kaynakları</a></li>
+          <li><a href="#">🛒 Sipariş</a></li>
+          <li><a href="#">💰 Finans</a></li>
+          <li><a href="#">📢 Pazarlama</a></li>
+          <li><a href="#">🏭 Üretim Planlama</a></li>
+          <li><a href="index.html">❌ Çıkış Yap</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Ana İçerik -->
+    <main class="main-content">
+      <h1>🔧 Satış Sonrası Destek</h1>
+
+      <!-- Filtreleme -->
+      <div class="filter-container">
+        <input type="text" id="searchCustomer" placeholder="Müşteri adı ara..." />
+        <select id="filterDurum">
+          <option value="">Tüm Durumlar</option>
+          <option value="Bekliyor">Bekliyor</option>
+          <option value="Çözüldü">Çözüldü</option>
+          <option value="İptal Edildi">İptal Edildi</option>
+        </select>
+        <button id="clearFilters">Temizle</button>
+        <button id="exportCsv">CSV Dışa Aktar</button>
+      </div>
+
+      <div class="form-container">
+        <h2>📝 Yeni Destek Kaydı</h2>
+        <form id="destek-form">
+          <label>Müşteri Adı:</label>
+          <input type="text" id="musteri" required />
+
+          <label>Talep Başlığı:</label>
+          <input type="text" id="baslik" required />
+
+          <label>Talep Açıklaması:</label>
+          <textarea id="aciklama" required></textarea>
+
+          <label>Durum:</label>
+          <select id="durum" required>
+            <option value="Bekliyor">Bekliyor</option>
+            <option value="Çözüldü">Çözüldü</option>
+            <option value="İptal Edildi">İptal Edildi</option>
+          </select>
+
+          <label>Talep Tarihi:</label>
+          <input type="date" id="tarih" required />
+
+          <div class="form-buttons">
+            <button type="submit">💾 Kaydet</button>
+            <button type="reset">🧹 Temizle</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="liste-container">
+        <h2>📋 Kayıtlı Destek Talepleri</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Müşteri</th>
+              <th>Başlık</th>
+              <th>Durum</th>
+              <th>Tarih</th>
+              <th>İşlemler</th>
+            </tr>
+          </thead>
+          <tbody id="destekListesi"></tbody>
+        </table>
+
+        <div class="pagination">
+          <button id="prevPage">« Önceki</button>
+          <span id="pageInfo"></span>
+          <button id="nextPage">Sonraki »</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div id="destekModal" class="modal">
+    <div class="modal-content">
+      <span id="modalClose" class="modal-close">&times;</span>
+      <h3>🔧 Destek Talep Detayları</h3>
+      <p><strong>Müşteri:</strong> <span id="modalMusteri"></span></p>
+      <p><strong>Başlık:</strong> <span id="modalBaslik"></span></p>
+      <p><strong>Açıklama:</strong> <span id="modalAciklama"></span></p>
+      <p><strong>Durum:</strong> <span id="modalDurum"></span></p>
+      <p><strong>Tarih:</strong> <span id="modalTarih"></span></p>
+    </div>
+  </div>
+
+  <script src="js/destek.js"></script>
+</body>
+</html>
+
+
+
+
+
+

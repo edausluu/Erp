@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>360° Müşteri Görünümü | OrbisERP</title>
+  <link rel="stylesheet" href="css/panel-style.css" />
+</head>
+<body>
+  <div class="dashboard-container">
+      <!-- Sol Menü -->
+    <aside class="sidebar">
+      <img src="img/orbiserp-logo-white.png" alt="OrbisERP Logo" class="sidebar-logo" />
+      <nav class="sidebar-nav">
+       <ul>
+          <li><a href="panel.html">🏠 Ana Sayfa</a></li>
+          <li class="has-submenu">
+            <span>👥 CRM ▸</span>
+            <ul class="submenu">
+              <li><a href="potansiyel.html">👤 Potansiyel Müşteriler</a></li>
+              <li><a href="ilk-temas.html">📞 İlk Temas ve Takip</a></li>
+              <li><a href="teklifler.html">💼 Teklifler</a></li>
+              <li><a href="satis.html">🛍️ Satışa Dönüşüm</a></li>
+              <li><a href="teslimat.html">📦 Teslimat & Faturalama</a></li>
+              <li><a href="destek.html">🔧 Satış Sonrası Destek</a></li>
+              <li><a href="kampanya.html">🎁 Sadakat & Kampanyalar</a></li>
+              <li><a href="analitik.html">📊 Müşteri Analitiği</a></li>
+              <li><a href="gorunum.html">🧭 360° Görünüm</a></li>
+            </ul>
+          </li>
+          <li><a href="#">📦 Envanter</a></li>
+          <li><a href="#">💼 İnsan Kaynakları</a></li>
+          <li><a href="#">🛒 Sipariş</a></li>
+          <li><a href="#">💰 Finans</a></li>
+          <li><a href="#">📢 Pazarlama</a></li>
+          <li><a href="#">🏭 Üretim Planlama</a></li>
+          <li><a href="index.html">❌ Çıkış Yap</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Ana İçerik -->
+    <main class="main-content">
+      <h1>🧭 360° Müşteri Görünümü</h1>
+
+      <!-- Müşteri Seçimi -->
+      <div class="form-container">
+        <label>Müşteri Seç:</label>
+        <select id="musteriSec">
+  <option value="a_firmasi">A Firması</option>
+  <option value="b_sirketi">B Şirketi</option>
+  <option value="c_ltd">C Ltd.</option>
+  <option value="d_holding">D Holding</option>
+  <option value="e_yazilim">E Yazılım</option>
+  <option value="f_grubu">F Grubu</option>
+</select>
+
+      </div>
+
+      <!-- Görünüm Kartları -->
+      <div class="overview-cards">
+        <div class="card"><h3>👤 Firma</h3><p id="firmaAdi">-</p></div>
+        <div class="card"><h3>💼 Toplam Teklif</h3><p id="teklifSayisi">-</p></div>
+        <div class="card"><h3>🛍️ Satışlar</h3><p id="satisAdedi">-</p></div>
+        <div class="card"><h3>📦 Teslimatlar</h3><p id="teslimatSayisi">-</p></div>
+        <div class="card"><h3>🔧 Açık Destek</h3><p id="destekSayisi">-</p></div>
+        <div class="card"><h3>🎁 Katıldığı Kampanyalar</h3><p id="kampanyaSayisi">-</p></div>
+        <div class="card"><h3>📈 Son İşlem</h3><p id="sonIslem">-</p></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/gorunum.js"></script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>İlk Temas ve Takip | OrbisERP</title>
+
+  <!-- 1) Genel panel stilleri -->
+  <link rel="stylesheet" href="css/panel-style.css" />
+  <!-- 2) Bu sayfaya özel stiller -->
+  <link rel="stylesheet" href="css/ilk-temas.css" />
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- SIDEBAR -->
+    <!-- Sol Menü -->
+    <aside class="sidebar">
+      <img src="img/orbiserp-logo-white.png" alt="OrbisERP Logo" class="sidebar-logo" />
+      <nav class="sidebar-nav">
+       <ul>
+          <li><a href="panel.html">🏠 Ana Sayfa</a></li>
+          <li class="has-submenu">
+            <span>👥 CRM ▸</span>
+            <ul class="submenu">
+              <li><a href="potansiyel.html">👤 Potansiyel Müşteriler</a></li>
+              <li><a href="ilk-temas.html">📞 İlk Temas ve Takip</a></li>
+              <li><a href="teklifler.html">💼 Teklifler</a></li>
+              <li><a href="satis.html">🛍️ Satışa Dönüşüm</a></li>
+              <li><a href="teslimat.html">📦 Teslimat & Faturalama</a></li>
+              <li><a href="destek.html">🔧 Satış Sonrası Destek</a></li>
+              <li><a href="kampanya.html">🎁 Sadakat & Kampanyalar</a></li>
+              <li><a href="analitik.html">📊 Müşteri Analitiği</a></li>
+              <li><a href="gorunum.html">🧭 360° Görünüm</a></li>
+            </ul>
+          </li>
+          <li><a href="#">📦 Envanter</a></li>
+          <li><a href="#">💼 İnsan Kaynakları</a></li>
+          <li><a href="#">🛒 Sipariş</a></li>
+          <li><a href="#">💰 Finans</a></li>
+          <li><a href="#">📢 Pazarlama</a></li>
+          <li><a href="#">🏭 Üretim Planlama</a></li>
+          <li><a href="index.html">❌ Çıkış Yap</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <h1>📞 İlk Temas ve Takip</h1>
+      <p class="intro">Müşterilerle ilk iletişim bilgilerini kaydedin ve takip edin.</p>
+
+      <!-- CONTROLS / FILTRELER -->
+      <div class="controls">
+        <input  type="text"    id="searchInput"    placeholder="Ara: isim…" />
+        <select id="statusFilter">
+          <option value="All">Tümü</option>
+          <option value="Yeni">Yeni</option>
+          <option value="Takipte">Takipte</option>
+          <option value="Cevaplandı">Cevaplandı</option>
+          <option value="Başarısız">Başarısız</option>
+        </select>
+        <input  type="date"    id="startDate" />
+        <input  type="date"    id="endDate"   />
+        <input  type="text"    id="assignedFilter" placeholder="Atanan’a göre ara" />
+        <select id="sortSelect">
+          <option value="dateNew">Yeni→Eski</option>
+          <option value="dateOld">Eski→Yeni</option>
+        </select>
+        <button id="bulkDeleteBtn"   class="btn btn-danger">🗑 Toplu Sil</button>
+        <select id="bulkStatusSelect" class="btn btn-secondary">
+          <option value="">Durum Güncelle</option>
+          <option value="Yeni">Yeni</option>
+          <option value="Takipte">Takipte</option>
+          <option value="Cevaplandı">Cevaplandı</option>
+          <option value="Başarısız">Başarısız</option>
+        </select>
+        <button id="bulkStatusBtn" class="btn btn-secondary">Uygula</button>
+        <button id="exportBtn"     class="btn btn-secondary">📤 CSV İndir</button>
+        <input  type="file"        id="importInput" accept=".csv" />
+        <button id="toggleViewBtn" class="btn btn-secondary">Takvime Geç</button>
+      </div>
+
+      <!-- FORM -->
+      <section class="form-section">
+        <h2>Yeni Takip Girişi</h2>
+        <form id="contactForm">
+          <label>Ad Soyad
+            <input type="text" id="name" required placeholder="Örn: Zeynep Demir" />
+          </label>
+          <label>İletişim Tarihi
+            <input type="date" id="date" required />
+          </label>
+          <label>Durum
+            <select id="status">
+              <option>Yeni</option>
+              <option>Takipte</option>
+              <option>Cevaplandı</option>
+              <option>Başarısız</option>
+            </select>
+          </label>
+          <label>Atanan
+            <input type="text" id="assigned" placeholder="Sorumlu kişi" />
+          </label>
+          <label>Görüşme Notu
+            <textarea id="note" rows="3"></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary">Kaydet</button>
+        </form>
+        <p id="successMsg" class="success-message">✔ Kayıt başarıyla eklendi.</p>
+      </section>
+
+      <!-- LISTE & TAKVIM -->
+      <div id="contentArea">
+        <div id="listView">
+          <h2>Takip Listesi</h2>
+          <table>
+            <thead>
+              <tr>
+                <th><input type="checkbox" id="selectAll" /></th>
+                <th>Ad Soyad</th><th>Tarih</th><th>Durum</th>
+                <th>Atanan</th><th>Not</th><th>Oluşturma</th>
+                <th>Kullanıcı</th><th>İşlemler</th>
+              </tr>
+            </thead>
+            <tbody id="contactTable"></tbody>
+          </table>
+          <div id="noRecords">Henüz kayıt yok.</div>
+        </div>
+        <div id="calendarView">
+          <h2>Takvim Görünümü</h2>
+          <table id="calendarTable">
+            <thead>
+              <tr><th>Pzt</th><th>Sal</th><th>Çar</th><th>Per</th>
+                  <th>Cuma</th><th>Cmt</th><th>Paz</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal Düzenleme -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <span id="closeEditModal" class="close-btn">&times;</span>
+      <h2>Düzenle Takip</h2>
+      <form id="editForm">
+        <input type="hidden" id="editIndex" />
+        <label>Ad Soyad<input type="text" id="editName" required /></label>
+        <label>İletişim Tarihi<input type="date" id="editDate" required /></label>
+        <label>Durum<select id="editStatus">
+          <option>Yeni</option><option>Takipte</option>
+          <option>Cevaplandı</option><option>Başarısız</option>
+        </select></label>
+        <label>Atanan<input type="text" id="editAssigned" /></label>
+        <label>Not<textarea id="editNote" rows="3"></textarea></label>
+        <div class="button-group">
+          <button type="submit" class="btn btn-primary">Kaydet</button>
+          <button type="button" id="cancelEdit" class="btn btn-secondary">İptal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <!-- submenu toggle -->
+  <script>
+    document.querySelectorAll('.has-submenu > span')
+      .forEach(s => s.addEventListener('click', ()=> s.parentElement.classList.toggle('open')));
+  </script>
+  <!-- iş JS -->
+  <script src="js/ilk-temas.js"></script>
+</body>
+</html>

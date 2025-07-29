@@ -1,0 +1,147 @@
+<!-- kampanya.html -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sadakat & Kampanyalar | OrbisERP</title>
+  <link rel="stylesheet" href="css/panel-style.css" />
+  <style>
+    /* Sonlanmış kampanyaları vurgulamak için */
+    .expired td {
+      background-color: #f8d7da;
+    }
+    .filter-container {
+      margin-bottom: 1rem;
+    }
+    #kampanyaSayisi {
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sol Menü -->
+    <aside class="sidebar">
+      <img src="img/orbiserp-logo-white.png" alt="OrbisERP Logo" class="sidebar-logo" />
+      <nav class="sidebar-nav">
+       <ul>
+          <li><a href="panel.html">🏠 Ana Sayfa</a></li>
+          <li class="has-submenu">
+            <span>👥 CRM ▸</span>
+            <ul class="submenu">
+              <li><a href="potansiyel.html">👤 Potansiyel Müşteriler</a></li>
+              <li><a href="ilk-temas.html">📞 İlk Temas ve Takip</a></li>
+              <li><a href="teklifler.html">💼 Teklifler</a></li>
+              <li><a href="satis.html">🛍️ Satışa Dönüşüm</a></li>
+              <li><a href="teslimat.html">📦 Teslimat & Faturalama</a></li>
+              <li><a href="destek.html">🔧 Satış Sonrası Destek</a></li>
+              <li><a href="kampanya.html">🎁 Sadakat & Kampanyalar</a></li>
+              <li><a href="analitik.html">📊 Müşteri Analitiği</a></li>
+              <li><a href="gorunum.html">🧭 360° Görünüm</a></li>
+            </ul>
+          </li>
+          <li><a href="#">📦 Envanter</a></li>
+          <li><a href="#">💼 İnsan Kaynakları</a></li>
+          <li><a href="#">🛒 Sipariş</a></li>
+          <li><a href="#">💰 Finans</a></li>
+          <li><a href="#">📢 Pazarlama</a></li>
+          <li><a href="#">🏭 Üretim Planlama</a></li>
+          <li><a href="index.html">❌ Çıkış Yap</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+
+    <!-- Ana İçerik -->
+    <main class="main-content">
+      <h1>🎁 Sadakat & Kampanyalar</h1>
+
+      <div class="form-container">
+        <h2>📝 Yeni / Düzenle Kampanya</h2>
+        <form id="kampanya-form">
+          <input type="hidden" id="editIndex" value="-1" />
+          <label>Müşteri Adı:</label>
+          <input type="text" id="musteri" required />
+
+          <label>Kampanya Adı:</label>
+          <input type="text" id="kampanyaAdi" required />
+
+          <label>Tür:</label>
+          <select id="tur" required>
+            <option value="Sadakat">Sadakat</option>
+            <option value="İndirim">İndirim</option>
+            <option value="Kupon">Kupon</option>
+          </select>
+
+          <label>Başlangıç Tarihi:</label>
+          <input type="date" id="baslangic" required />
+
+          <label>Bitiş Tarihi:</label>
+          <input type="date" id="bitis" required />
+
+          <label>Kampanya Açıklaması:</label>
+          <textarea id="aciklama"></textarea>
+
+          <label>Kampanya Kodu:</label>
+          <input type="text" id="kod" required />
+
+          <label>İndirim / Puan:</label>
+          <input type="number" id="deger" step="0.01" required />
+
+          <div class="form-buttons">
+            <button type="submit" id="submitBtn">💾 Kaydet</button>
+            <button type="reset" id="resetBtn">🧹 Temizle</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="liste-container">
+        <div class="filter-container">
+          <label for="filterTur">Türüne Göre Filtrele:</label>
+          <select id="filterTur">
+            <option value="All">Tümü</option>
+            <option value="Sadakat">Sadakat</option>
+            <option value="İndirim">İndirim</option>
+            <option value="Kupon">Kupon</option>
+          </select>
+        </div>
+        <p id="kampanyaSayisi">Toplam Kampanya: 0</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Müşteri</th>
+              <th>Kampanya</th>
+              <th>Tür</th>
+              <th>Tarih</th>
+              <th>Kod</th>
+              <th>Değer</th>
+              <th>İşlemler</th>
+            </tr>
+          </thead>
+          <tbody id="kampanyaListesi"></tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div id="kampanyaModal" class="modal">
+    <div class="modal-content">
+      <span id="modalClose" class="modal-close">&times;</span>
+      <h3>🎁 Kampanya Detayları</h3>
+      <p><strong>Müşteri:</strong> <span id="modalMusteri"></span></p>
+      <p><strong>Kampanya:</strong> <span id="modalAdi"></span></p>
+      <p><strong>Tür:</strong> <span id="modalTur"></span></p>
+      <p><strong>Tarih:</strong> <span id="modalTarih"></span></p>
+      <p><strong>Kod:</strong> <span id="modalKod"></span></p>
+      <p><strong>Değer:</strong> <span id="modalDeger"></span></p>
+      <p><strong>Açıklama:</strong> <span id="modalAciklama"></span></p>
+    </div>
+  </div>
+
+  <script src="js/kampanya.js"></script>
+</body>
+</html>
+

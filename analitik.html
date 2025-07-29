@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Müşteri Analitiği | OrbisERP</title>
+  <link rel="stylesheet" href="css/panel-style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="dashboard-container">
+      <!-- Sol Menü -->
+    <aside class="sidebar">
+      <img src="img/orbiserp-logo-white.png" alt="OrbisERP Logo" class="sidebar-logo" />
+      <nav class="sidebar-nav">
+       <ul>
+          <li><a href="panel.html">🏠 Ana Sayfa</a></li>
+          <li class="has-submenu">
+            <span>👥 CRM ▸</span>
+            <ul class="submenu">
+              <li><a href="potansiyel.html">👤 Potansiyel Müşteriler</a></li>
+              <li><a href="ilk-temas.html">📞 İlk Temas ve Takip</a></li>
+              <li><a href="teklifler.html">💼 Teklifler</a></li>
+              <li><a href="satis.html">🛍️ Satışa Dönüşüm</a></li>
+              <li><a href="teslimat.html">📦 Teslimat & Faturalama</a></li>
+              <li><a href="destek.html">🔧 Satış Sonrası Destek</a></li>
+              <li><a href="kampanya.html">🎁 Sadakat & Kampanyalar</a></li>
+              <li><a href="analitik.html">📊 Müşteri Analitiği</a></li>
+              <li><a href="gorunum.html">🧭 360° Görünüm</a></li>
+            </ul>
+          </li>
+          <li><a href="#">📦 Envanter</a></li>
+          <li><a href="#">💼 İnsan Kaynakları</a></li>
+          <li><a href="#">🛒 Sipariş</a></li>
+          <li><a href="#">💰 Finans</a></li>
+          <li><a href="#">📢 Pazarlama</a></li>
+          <li><a href="#">🏭 Üretim Planlama</a></li>
+          <li><a href="index.html">❌ Çıkış Yap</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Ana İçerik -->
+    <main class="main-content">
+      <h1>📊 Müşteri Analitiği</h1>
+
+      <!-- Bilgi Kartları -->
+      <div class="analytics-cards">
+        <div class="card"><h3>👥 Toplam Müşteri</h3><p id="cardMusteri">120</p></div>
+        <div class="card"><h3>📈 Satışa Dönüşüm</h3><p id="cardDonusum">%42</p></div>
+        <div class="card"><h3>🎁 Kampanya Katılım</h3><p id="cardKampanya">36</p></div>
+        <div class="card"><h3>🕒 Ortalama Destek Süresi</h3><p id="cardDestek">2.5 gün</p></div>
+      </div>
+
+      <!-- Grafikler -->
+      <div class="chart-container">
+        <h2>📦 Teklif Sayısına Göre Müşteriler</h2>
+        <canvas id="barChart"></canvas>
+      </div>
+
+      <div class="chart-container">
+        <h2>🥧 Kampanya Türü Dağılımı</h2>
+        <canvas id="pieChart"></canvas>
+      </div>
+
+      <div class="chart-container">
+        <h2>📊 Aylık Satış Eğrisi</h2>
+        <canvas id="lineChart"></canvas>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/analitik.js"></script>
+</body>
+</html>
+

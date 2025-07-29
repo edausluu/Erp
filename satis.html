@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Satışa Dönüşüm | OrbisERP</title>
+  <link rel="stylesheet" href="css/panel-style.css" />
+</head>
+<body>
+  <div class="dashboard-container">
+     <!-- Sol Menü -->
+    <aside class="sidebar">
+      <img src="img/orbiserp-logo-white.png" alt="OrbisERP Logo" class="sidebar-logo" />
+      <nav class="sidebar-nav">
+       <ul>
+          <li><a href="panel.html">🏠 Ana Sayfa</a></li>
+          <li class="has-submenu">
+            <span>👥 CRM ▸</span>
+            <ul class="submenu">
+              <li><a href="potansiyel.html">👤 Potansiyel Müşteriler</a></li>
+              <li><a href="ilk-temas.html">📞 İlk Temas ve Takip</a></li>
+              <li><a href="teklifler.html">💼 Teklifler</a></li>
+              <li><a href="satis.html">🛍️ Satışa Dönüşüm</a></li>
+              <li><a href="teslimat.html">📦 Teslimat & Faturalama</a></li>
+              <li><a href="destek.html">🔧 Satış Sonrası Destek</a></li>
+              <li><a href="kampanya.html">🎁 Sadakat & Kampanyalar</a></li>
+              <li><a href="analitik.html">📊 Müşteri Analitiği</a></li>
+              <li><a href="gorunum.html">🧭 360° Görünüm</a></li>
+            </ul>
+          </li>
+          <li><a href="#">📦 Envanter</a></li>
+          <li><a href="#">💼 İnsan Kaynakları</a></li>
+          <li><a href="#">🛒 Sipariş</a></li>
+          <li><a href="#">💰 Finans</a></li>
+          <li><a href="#">📢 Pazarlama</a></li>
+          <li><a href="#">🏭 Üretim Planlama</a></li>
+          <li><a href="index.html">❌ Çıkış Yap</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Ana İçerik -->
+    <main class="main-content">
+      <h1>📈 Satışa Dönüşüm Paneli</h1>
+
+      <div class="form-container">
+        <h2>📝 Yeni Satış Ekle</h2>
+        <form id="satis-form">
+          <label>Müşteri Adı:</label>
+          <input type="text" id="musteriAdi" required>
+
+          <label>Teklif No:</label>
+          <input type="text" id="teklifNo" required>
+
+          <label>Satış Tarihi:</label>
+          <input type="date" id="satisTarihi" required>
+
+          <label>Satış Durumu:</label>
+          <select id="satisDurumu" required>
+            <option value="Beklemede">Beklemede</option>
+            <option value="Onaylandı">Onaylandı</option>
+            <option value="Reddedildi">Reddedildi</option>
+          </select>
+
+          <label>Açıklama (Opsiyonel):</label>
+          <textarea id="aciklama"></textarea>
+
+          <div class="form-buttons">
+            <button type="submit" class="btn-primary">💾 Kaydet</button>
+            <button type="reset" class="btn-danger">🧹 Temizle</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="liste-container">
+        <h2>📋 Kayıtlı Satışlar</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Müşteri Adı</th>
+              <th>Teklif No</th>
+              <th>Satış Tarihi</th>
+              <th>Durum</th>
+              <th>İşlemler</th>
+            </tr>
+          </thead>
+          <tbody id="satisListesi"></tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <!-- Detay Görüntüleme Modalı -->
+  <div id="detayModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <h3>🧾 Satış Detayları</h3>
+      <p><strong>Müşteri Adı:</strong> <span id="modalMusteri"></span></p>
+      <p><strong>Teklif No:</strong> <span id="modalTeklif"></span></p>
+      <p><strong>Satış Tarihi:</strong> <span id="modalTarih"></span></p>
+      <p><strong>Durum:</strong> <span id="modalDurum"></span></p>
+      <p><strong>Açıklama:</strong> <span id="modalAciklama"></span></p>
+    </div>
+  </div>
+
+  <script src="js/satis.js"></script>
+</body>
+</html>

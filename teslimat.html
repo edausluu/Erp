@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teslimat & Faturalama | OrbisERP</title>
+  <link rel="stylesheet" href="css/panel-style.css" />
+  <style>
+    /* Filtre alanları */
+    .filter-container {
+      margin: 15px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .filter-container input[type="text"],
+    .filter-container select,
+    .filter-container input[type="date"] {
+      padding: 6px 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    .filter-container button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 7px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    /* Pagination */
+    .pagination-container {
+      margin: 15px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    .pagination-container button {
+      padding: 6px 12px;
+      border-radius: 5px;
+      border: 1px solid #007bff;
+      background-color: white;
+      color: #007bff;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .pagination-container button:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+    .pagination-container span {
+      font-weight: 600;
+    }
+    /* Durum butonları */
+    .durum-btn {
+      margin: 3px 5px 0 0;
+      padding: 3px 6px;
+      font-size: 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      color: white;
+    }
+    .durum-btn[data-durum="Bekliyor"] {
+      background-color: #f0ad4e;
+    }
+    .durum-btn[data-durum="Tamamlandı"] {
+      background-color: #5cb85c;
+    }
+    .durum-btn[data-durum="İade Edildi"] {
+      background-color: #d9534f;
+    }
+    /* Yaklaşan tarih uyarısı */
+    .tarih-uyari {
+      background-color: #fff3cd;
+      color: #856404;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-left: 6px;
+    }
+    /* Hata mesajları */
+    #errorMessages p {
+      margin: 3px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+       <!-- Sol Menü -->
+    <aside class="sidebar">
+      <img src="img/orbiserp-logo-white.png" alt="OrbisERP Logo" class="sidebar-logo" />
+      <nav class="sidebar-nav">
+       <ul>
+          <li><a href="panel.html">🏠 Ana Sayfa</a></li>
+          <li class="has-submenu">
+            <span>👥 CRM ▸</span>
+            <ul class="submenu">
+              <li><a href="potansiyel.html">👤 Potansiyel Müşteriler</a></li>
+              <li><a href="ilk-temas.html">📞 İlk Temas ve Takip</a></li>
+              <li><a href="teklifler.html">💼 Teklifler</a></li>
+              <li><a href="satis.html">🛍️ Satışa Dönüşüm</a></li>
+              <li><a href="teslimat.html">📦 Teslimat & Faturalama</a></li>
+              <li><a href="destek.html">🔧 Satış Sonrası Destek</a></li>
+              <li><a href="kampanya.html">🎁 Sadakat & Kampanyalar</a></li>
+              <li><a href="analitik.html">📊 Müşteri Analitiği</a></li>
+              <li><a href="gorunum.html">🧭 360° Görünüm</a></li>
+            </ul>
+          </li>
+          <li><a href="#">📦 Envanter</a></li>
+          <li><a href="#">💼 İnsan Kaynakları</a></li>
+          <li><a href="#">🛒 Sipariş</a></li>
+          <li><a href="#">💰 Finans</a></li>
+          <li><a href="#">📢 Pazarlama</a></li>
+          <li><a href="#">🏭 Üretim Planlama</a></li>
+          <li><a href="index.html">❌ Çıkış Yap</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Ana İçerik -->
+    <main class="main-content">
+      <h1>📦 Teslimat & Faturalama</h1>
+
+      <div class="form-container">
+        <h2>🚚 Teslimat ve Fatura Kaydı</h2>
+
+        <!-- Filtreleme Alanları -->
+        <div class="filter-container">
+          <input type="text" id="searchCustomer" placeholder="Müşteri adı ara..." />
+          <input type="text" id="searchTeklif" placeholder="Teklif no ara..." />
+          <select id="filterDurum">
+            <option value="">Durum filtrele</option>
+            <option value="Bekliyor">Bekliyor</option>
+            <option value="Tamamlandı">Tamamlandı</option>
+            <option value="İade Edildi">İade Edildi</option>
+          </select>
+          <label>Tarih aralığı:</label>
+          <input type="date" id="filterStartDate" />
+          <input type="date" id="filterEndDate" />
+          <button id="clearFilters">Filtreleri Temizle</button>
+          <button id="exportCsv" class="btn-primary" style="margin-left: 10px;">📥 CSV Olarak İndir</button>
+        </div>
+
+        <form id="teslimat-form">
+          <input type="hidden" id="editIndex" value="" />
+          <label>Müşteri Adı:</label>
+          <input type="text" id="musteri" required />
+
+          <label>Teklif No:</label>
+          <input type="text" id="teklif" required />
+
+          <label>Teslimat Tarihi:</label>
+          <input type="date" id="teslimatTarihi" required />
+
+          <label>Teslimat Durumu:</label>
+          <select id="teslimatDurumu" required>
+            <option value="Bekliyor">Bekliyor</option>
+            <option value="Tamamlandı">Tamamlandı</option>
+            <option value="İade Edildi">İade Edildi</option>
+          </select>
+
+          <label>Fatura No:</label>
+          <input type="text" id="faturaNo" required />
+
+          <label>Fatura Tutarı (₺):</label>
+          <input type="number" id="faturaTutar" step="0.01" required />
+
+          <label>Açıklama:</label>
+          <textarea id="aciklama"></textarea>
+
+          <div id="errorMessages" style="color:red; margin-top:10px;"></div>
+
+          <div class="form-buttons">
+            <button type="submit">💾 Kaydet</button>
+            <button type="reset">🧹 Temizle</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="liste-container">
+        <h2>📋 Teslimat ve Fatura Kayıtları</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Müşteri</th>
+              <th>Teklif No</th>
+              <th>Durum</th>
+              <th>Teslimat Tarihi</th>
+              <th>Fatura No</th>
+              <th>Fatura Tutarı</th>
+              <th>İşlemler</th>
+            </tr>
+          </thead>
+          <tbody id="teslimatListesi"></tbody>
+        </table>
+
+        <!-- Pagination Controls -->
+        <div id="pagination" class="pagination-container">
+          <button id="prevPage" disabled>◀ Önceki</button>
+          <span id="pageInfo">Sayfa 1</span>
+          <button id="nextPage" disabled>Sonraki ▶</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div id="teslimatModal" class="modal">
+    <div class="modal-content">
+      <span id="modalClose" class="modal-close">&times;</span>
+      <h3>🚚 Teslimat ve Fatura Detayları</h3>
+      <p><strong>Müşteri:</strong> <span id="modalMusteri"></span></p>
+      <p><strong>Teklif No:</strong> <span id="modalTeklif"></span></p>
+      <p><strong>Teslimat Tarihi:</strong> <span id="modalTarih"></span></p>
+      <p><strong>Durum:</strong> <span id="modalDurum"></span></p>
+      <p><strong>Fatura No:</strong> <span id="modalFaturaNo"></span></p>
+      <p><strong>Tutar:</strong> ₺<span id="modalTutar"></span></p>
+      <p><strong>Açıklama:</strong> <span id="modalAciklama"></span></p>
+    </div>
+  </div>
+
+  <script src="js/teslimat.js"></script>
+</body>
+</html>
+
+
+

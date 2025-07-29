@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teklifler | OrbisERP</title>
+  <link rel="stylesheet" href="css/panel-style.css" />
+</head>
+<body>
+  <div class="dashboard-container">
+     <!-- Sol Menü -->
+    <aside class="sidebar">
+      <img src="img/orbiserp-logo-white.png" alt="OrbisERP Logo" class="sidebar-logo" />
+      <nav class="sidebar-nav">
+       <ul>
+          <li><a href="panel.html">🏠 Ana Sayfa</a></li>
+          <li class="has-submenu">
+            <span>👥 CRM ▸</span>
+            <ul class="submenu">
+              <li><a href="potansiyel.html">👤 Potansiyel Müşteriler</a></li>
+              <li><a href="ilk-temas.html">📞 İlk Temas ve Takip</a></li>
+              <li><a href="teklifler.html">💼 Teklifler</a></li>
+              <li><a href="satis.html">🛍️ Satışa Dönüşüm</a></li>
+              <li><a href="teslimat.html">📦 Teslimat & Faturalama</a></li>
+              <li><a href="destek.html">🔧 Satış Sonrası Destek</a></li>
+              <li><a href="kampanya.html">🎁 Sadakat & Kampanyalar</a></li>
+              <li><a href="analitik.html">📊 Müşteri Analitiği</a></li>
+              <li><a href="gorunum.html">🧭 360° Görünüm</a></li>
+            </ul>
+          </li>
+          <li><a href="#">📦 Envanter</a></li>
+          <li><a href="#">💼 İnsan Kaynakları</a></li>
+          <li><a href="#">🛒 Sipariş</a></li>
+          <li><a href="#">💰 Finans</a></li>
+          <li><a href="#">📢 Pazarlama</a></li>
+          <li><a href="#">🏭 Üretim Planlama</a></li>
+          <li><a href="index.html">❌ Çıkış Yap</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Ana İçerik -->
+    <main class="main-content">
+      <h1>💼 Teklifler</h1>
+
+      <div class="form-card">
+        <h2>Yeni Teklif Ekle</h2>
+        <form id="offerForm">
+          <input type="text" id="offerTitle" placeholder="Teklif Başlığı" required />
+          <input type="text" id="offerClient" placeholder="Müşteri Adı" required />
+          <input type="number" id="offerPrice" placeholder="Fiyat (₺)" required />
+          <select id="offerStatus" required>
+            <option value="" disabled selected>Durum Seçin</option>
+            <option value="Beklemede">Beklemede</option>
+            <option value="Onaylandı">Onaylandı</option>
+            <option value="Reddedildi">Reddedildi</option>
+          </select>
+          <div class="button-group">
+            <button type="submit" class="btn-primary">➕ Teklif Ekle</button>
+            <button type="reset" class="btn-danger">🧹 Temizle</button>
+          </div>
+          <p class="success-message" id="successMsg"></p>
+        </form>
+      </div>
+
+      <div class="offer-list">
+        <h2>Teklifler</h2>
+        <div id="offerItems"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Detay Modal -->
+  <div id="offerModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeOfferModal">&times;</span>
+      <h2>Teklif Detayı</h2>
+      <p><strong>Başlık:</strong> <span id="detailTitle"></span></p>
+      <p><strong>Müşteri:</strong> <span id="detailClient"></span></p>
+      <p><strong>Fiyat:</strong> ₺<span id="detailPrice"></span></p>
+      <p><strong>Durum:</strong> <span id="detailStatus"></span></p>
+    </div>
+  </div>
+
+  <script src="js/teklifler.js"></script>
+</body>
+</html>
+
+
+
+

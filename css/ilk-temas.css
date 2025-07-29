@@ -1,0 +1,144 @@
+/* Controls */
+.controls {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:20px;
+}
+.controls input,
+.controls select,
+.controls button,
+.controls input[type=file] {
+  padding:8px;
+  border:1px solid #ccc;
+  border-radius:4px;
+  background:#fff;
+  color:#333;
+}
+.controls input::placeholder { color:#888; }
+
+/* Form */
+.form-section {
+  background:#fff;
+  padding:20px;
+  border-radius:6px;
+  box-shadow:0 1px 4px rgba(0,0,0,0.1);
+  margin-bottom:20px;
+  max-width:600px;
+}
+.form-section h2 { font-size:18px; color:#2C3E50; margin-bottom:15px; }
+.form-section label { display:block; margin-bottom:10px; }
+.form-section input,
+.form-section textarea,
+.form-section select {
+  width:100%;
+  padding:8px;
+  border:1px solid #ccc;
+  border-radius:4px;
+  background:#f9f9f9;
+}
+
+/* Buttons */
+.btn { cursor:pointer; border:none; border-radius:4px; }
+.btn-primary   { background:#007bff; color:#fff; padding:8px 16px; }
+.btn-secondary { background:#6c757d; color:#fff; padding:8px 16px; }
+.btn-danger    { background:#dc3545; color:#fff; padding:8px 16px; }
+
+/* Success mesajı */
+.success-message { color:green; margin-top:10px; display:none; }
+
+/* Liste */
+#listView table {
+  width:100%;
+  border-collapse:collapse;
+}
+#listView th,
+#listView td {
+  border:1px solid #ddd;
+  padding:8px;
+  text-align:left;
+}
+#listView th { background:#007bff; color:#fff; }
+.status-badge {
+  padding:2px 6px;
+  border-radius:4px;
+  color:#fff;
+  font-size:12px;
+}
+.status-Yeni       { background:#17a2b8; }
+.status-Takipte    { background:#ffc107; color:#212529; }
+.status-Cevaplandı { background:#28a745; }
+.status-Başarısız  { background:#dc3545; }
+
+#noRecords {
+  text-align:center;
+  padding:20px;
+  color:#555;
+}
+
+/* Takvim */
+#calendarView { display:none; margin-top:20px; }
+#calendarTable {
+  width:100%;
+  border-collapse:collapse;
+}
+#calendarTable th,
+#calendarTable td {
+  border:1px solid #ccc;
+  padding:8px;
+  vertical-align:top;
+  height:80px;
+}
+#calendarTable th {
+  background:#007bff;
+  color:#fff;
+}
+.event {
+  background:#e9ecef;
+  padding:4px;
+  margin-bottom:4px;
+  border-radius:3px;
+  font-size:12px;
+}
+
+/* Modal */
+.modal {
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.5);
+}
+.modal-content {
+  background:#fff;
+  margin:50px auto;
+  padding:20px;
+  border-radius:6px;
+  width:90%;
+  max-width:400px;
+  position:relative;
+}
+.close-btn {
+  position:absolute;
+  top:10px; right:10px;
+  cursor:pointer;
+  font-size:18px;
+}
+
+/* Toast */
+.toast {
+  position:fixed;
+  bottom:20px; right:20px;
+  background:#333; color:#fff;
+  padding:10px 20px;
+  border-radius:4px;
+  opacity:0;
+  transition:opacity .3s;
+}
+.toast.show {
+  opacity:1;
+}
+
+
+
+
